@@ -10,3 +10,4 @@
 ### 4、逆向横拍 Orientation值为3<br />  
 ![img5](http://yuminjustin.cn/uploadfile/2015/0423/20150423114328333.jpg "img5") 
 ### 更多详细内容请查看：[点击这里](http://yuminjustin.cn/html/news/2015/0423/30.html) 
+  利用插件：jQuery.Exif
