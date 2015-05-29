@@ -1,7 +1,7 @@
   最近遇到一个棘手的问题——手机上拍照并上传图片，因为拍摄角度问题，图片的显示问题，实际情况如下图所示。<br />  
-![img](http://yuminjustin.cn/uploadfile/2015/0423/20150423110458646.jpg "img") 
+![img](http://yuminjustin.cn/uploadfile/2015/0423/20150423110458646.jpg "img") <br />
   当客户拍摄时选择的角度问题，照片的显示角度也会有问题，看图软件会自动帮我们矫正，但是在项目中我们就必须要自己去矫正了，之前找到一个关于这方面信息的文章，是腾讯的工程师写的：[查看](http://tgideas.qq.com/webplat/info/news_version3/804/808/811/m579/201409/278736.shtml) 
-  方法有点复杂，首先要将拍照获取的图片文件转成64位编码，然后再将64位编码转换成二进制，这样做的原因是为了去获取图片的EXIF信息，EXIF中包含了照片的相关信息，其中就有一个Orientation的属性，顾名思义，翻译成中文就是设备方向呗。
+  方法有点复杂，首先要将拍照获取的图片文件转成64位编码，然后再将64位编码转换成二进制，这样做的原因是为了去获取图片的EXIF信息，EXIF中包含了照片的相关信息，其中就有一个Orientation的属性，顾名思义，翻译成中文就是设备方向呗。<br />
   首先，将拍照的图片获取。代码如下：
 ###1、HTML input标签的写法:
         <input type="file" accept="image/*;capture=camera" id="captureFile" capture="camera"/>
@@ -25,8 +25,8 @@
            var ctx = canvas.getContext("2d");
            ctx.drawImage(img, 0, 0);
         }
-  边看文章边学着做，我的天啊，不是报错就是不运行，搞js的人都知道，js是不可以操作文件的，将图片信息转成64位倒还好办，转成二进制真的难倒我了，那篇文章上也讲得很笼统，太难搞了，几乎快要放弃。
-  于是乎就到度娘那儿搜索看看有没有获取图片EXIF的查件，找到了一个jQuery.Exif的插件，例子：[查看](http://developer.51cto.com/art/201207/346157.htm) 
+  边看文章边学着做，我的天啊，不是报错就是不运行，搞js的人都知道，js是不可以操作文件的，将图片信息转成64位倒还好办，转成二进制真的难倒我了，那篇文章上也讲得很笼统，太难搞了，几乎快要放弃。<br />
+  于是乎就到度娘那儿搜索看看有没有获取图片EXIF的查件，找到了一个jQuery.Exif的插件，例子：[查看](http://developer.51cto.com/art/201207/346157.htm) <br />
   这个例子当中罗列的照片的一系列信息，拍照的设备、型号、白平衡等等等，于是就下载下来，测试了一番。
 ### ①正常竖拍 Orientation值为6<br />  
 ![img2](http://yuminjustin.cn/uploadfile/2015/0423/20150423113934816.jpg "img2")  
@@ -35,7 +35,7 @@
 ### ③逆向竖拍 Orientation值为8<br />  
 ![img4](http://yuminjustin.cn/uploadfile/2015/0423/20150423114316513.jpg "img4")  
 ### ④逆向横拍 Orientation值为3<br />  
-![img5](http://yuminjustin.cn/uploadfile/2015/0423/20150423114328333.jpg "img5") 
+![img5](http://yuminjustin.cn/uploadfile/2015/0423/20150423114328333.jpg "img5") <br />
   有了jQuery.Exif的帮助，那种兜圈子还要搞二进制的方法我就不考虑了。php那边也有接收64位编码并生成图片的代码，也为我的功能实现铺好了路。那么接下来要改写上面的第三点了，因为要提前把图片翻转好，才能生成64位编码。
 ###新的3、利用jQuery.Exif将拍摄情况分类并创建一个容器canvas（接着上面的省略号）
        var w = img.width, //图片的 宽度
